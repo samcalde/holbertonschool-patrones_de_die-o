@@ -7,7 +7,17 @@ class EventListener(ABC):
     def update(self, message):
         pass
 
-class Subject:
+class AttachSubject(ABC):
+    @abstractmethod
+    def attach(self, subscriber: EventListener):
+        pass
+
+class NotifySubject(ABC):
+    @abstractmethod
+    def notify(self, message: str):
+        pass
+
+class Subject(AttachSubject, NotifySubject):
     def __init__(self):
         self.subscribers = []
 
